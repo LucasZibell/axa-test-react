@@ -1,0 +1,15 @@
+.page-input {
+  width: 30px;
+}
+
+.paginator-button {
+  border: solid 1px gray;
+  border-radius: 4px;
+  color: blue;
+  width: 60px;
+
+  &:disabled {
+    color: gray;
+    cursor: not-allowed;
+  }
+}

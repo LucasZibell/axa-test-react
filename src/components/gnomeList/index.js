@@ -6,11 +6,15 @@ import { getGnomes } from '../../services/gnomes';
 
 import './styles.scss';
 
+const pageSize = 20;
+
 function GnomeList() {
   const [gnomes, setGnomes] = useState({});
+  const [gnomePage, setGnomePage] = useState([]);
   const dispatch = useDispatch();
   const selectedCity = useSelector(state => state.selectedCity);
   const filteredName = useSelector(state => state.filterName);
+  const currentPage = useSelector(state => state.currentPage);
 
   useEffect(() => {
     getGnomes().then(({ data }) => {
@@ -20,18 +24,28 @@ function GnomeList() {
     });
   }, [dispatch]);
 
+  useEffect(() => {
+    const gnomesInCity = gnomes[selectedCity] || [];
+    const min = pageSize * (currentPage - 1);
+    const max = pageSize * currentPage;
+    let newPage = [];
+    if (gnomesInCity.length) {
+      const wantedGnomesInCity = gnomesInCity.filter(({ name }) => name.includes(filteredName));
+      newPage = wantedGnomesInCity.slice(min, max);
+      dispatch(actionCreators.setExistNextPage(!!wantedGnomesInCity[max]));
+    }
+    setGnomePage(newPage);
+  }, [currentPage, dispatch, filteredName, gnomes, selectedCity]);
+
   return (
     <div>
       <span>Listado</span>
       <div className="column character-list">
-        {selectedCity &&
-          gnomes[selectedCity]
-            .filter(({ name }) => name.includes(filteredName))
-            .map(elem => (
-              <span className="m-bottom-2" key={elem.id}>
-                {elem.name}
-              </span>
-            ))}
+        {gnomePage.map(elem => (
+          <span className="m-bottom-2" key={elem.id}>
+            {elem.name}
+          </span>
+        ))}
       </div>
     </div>
   );
