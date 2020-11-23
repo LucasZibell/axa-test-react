@@ -10,6 +10,7 @@ function GnomeList() {
   const [gnomes, setGnomes] = useState({});
   const dispatch = useDispatch();
   const selectedCity = useSelector(state => state.selectedCity);
+  const filteredName = useSelector(state => state.filterName);
 
   useEffect(() => {
     getGnomes().then(({ data }) => {
@@ -24,11 +25,13 @@ function GnomeList() {
       <span>Listado</span>
       <div className="column character-list">
         {selectedCity &&
-          gnomes[selectedCity].map(elem => (
-            <span className="m-bottom-2" key={elem.id}>
-              {elem.name}
-            </span>
-          ))}
+          gnomes[selectedCity]
+            .filter(({ name }) => name.includes(filteredName))
+            .map(elem => (
+              <span className="m-bottom-2" key={elem.id}>
+                {elem.name}
+              </span>
+            ))}
       </div>
     </div>
   );
