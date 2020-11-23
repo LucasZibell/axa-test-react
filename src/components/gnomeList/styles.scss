@@ -1,0 +1,9 @@
+.character-list {
+  :nth-child(even) {
+    color: green;
+  }
+
+  :nth-child(odd) {
+    color: blue;
+  }
+}
