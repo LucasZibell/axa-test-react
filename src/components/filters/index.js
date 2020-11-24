@@ -51,16 +51,16 @@ function Filters() {
           onChange={e => setFilter({ ...filters, age: Number(e.target.value) })}
         />
         <input
-          placeholder="Friend"
-          className={`m-right-2 ${styles.nameInput}`}
-          type="text"
-          onChange={e => setFilter({ ...filters, wantedFriend: e.target.value })}
-        />
-        <input
           placeholder="Hair"
           className={`m-right-2 ${styles.nameInput}`}
           type="text"
           onChange={e => setFilter({ ...filters, hairColor: e.target.value })}
+        />
+        <input
+          placeholder="Friend"
+          className={`m-right-2 ${styles.nameInput}`}
+          type="text"
+          onChange={e => setFilter({ ...filters, wantedFriend: e.target.value })}
         />
         <input
           placeholder="Height"
@@ -76,7 +76,7 @@ function Filters() {
         />
         <input
           placeholder="Weight"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.nameInput}
           type="number"
           onChange={e => setFilter({ ...filters, weight: Number(e.target.value) })}
         />

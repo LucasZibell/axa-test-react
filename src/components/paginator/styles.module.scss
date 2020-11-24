@@ -16,6 +16,13 @@
   &:hover {
     border: solid 1px $denim;
   }
+
+  &:disabled {
+    border: solid 1px $alto;
+    background-color: $white;
+    color: $alto;
+    cursor: not-allowed;
+  }
 }
 
 .paginator-button {

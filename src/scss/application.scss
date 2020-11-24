@@ -8,12 +8,30 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
 
-// TODO: Edit this global styles
-
 body {
   background-color: $gallery;
   height: 100%;
 }
+
+// stylelint-disable
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: all 500ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+// stylelint-enable
 
 h1,
 h2,

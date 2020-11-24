@@ -14,7 +14,8 @@ export const INITIAL_STATE = {
   },
   currentPage: 1,
   existNextPage: true,
-  pageSize: 20
+  pageSize: 20,
+  loading: true
 };
 
 const ActionTypes = createObject([

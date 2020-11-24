@@ -4,9 +4,7 @@
   border: solid 1px $alto;
   border-radius: 4px;
   background-color: $white;
-  height: 320px;
-  margin-bottom: 12px;
-  margin-right: 4px;
+  height: 340px;
   padding: 20px;
   width: 250px;
   transition: all ease-in-out 0.3s;
@@ -15,23 +13,52 @@
     animation: shake 0.5s;
     animation-iteration-count: 1;
     border: solid 1px $denim;
+    background: radial-gradient(circle, $white 80%, $denim 100%);
   }
+}
+
+.modal-container {
+  padding: 0 40px;
 }
 
 .gnome-image {
   border-radius: 4px;
   height: 200px;
-  object-fit: contain;
+  object-fit: fill;
   width: auto;
   max-width: 200px;
 }
 
-.gnome-name {
-  font-size: 16px;
+.gnome-information-box {
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .gnome-information {
+  text-align: start;
   font-size: 16px;
+  line-height: 18px;
+}
+
+.gnome-modal-image {
+  border-radius: 4px;
+  height: 300px;
+  object-fit: fill;
+  width: 100%;
+}
+
+.gnome-modal-information {
+  text-align: start;
+  font-size: 24px;
+  line-height: 26px;
+}
+
+.gnome-title {
+  color: $denim;
+  font-size: 24px;
+  line-height: 26px;
+  font-weight: 700;
 }
 
 @keyframes shake {
