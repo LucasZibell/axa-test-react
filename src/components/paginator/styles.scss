@@ -1,15 +1,42 @@
+@import '../../scss/variables/colors';
+
 .page-input {
+  font-size: 14px;
+}
+
+.page-size {
+  border: solid 1px $cornflower-blue;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 26px;
+  padding: 4px;
   width: 30px;
+  transition: all ease-in-out 0.3s;
+
+  &:hover {
+    border: solid 1px $denim;
+    border: solid 1px $denim;
+  }
 }
 
 .paginator-button {
-  border: solid 1px gray;
+  background-color: $cornflower-blue;
+  border: solid 1px $cornflower-blue;
   border-radius: 4px;
-  color: blue;
+  color: $white;
+  padding: 4px;
   width: 60px;
+  transition: all ease-in-out 0.3s;
 
   &:disabled {
-    color: gray;
+    border: solid 1px $alto;
+    background-color: $white;
+    color: $alto;
     cursor: not-allowed;
+  }
+
+  &:focus {
+    background-color: $denim;
+    border: solid 1px $denim;
   }
 }

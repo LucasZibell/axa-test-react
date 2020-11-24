@@ -4,16 +4,17 @@ import { actionCreators } from '../../context/reducer';
 import { useSelector, useDispatch } from '../../context';
 import { getGnomes } from '../../services/gnomes';
 import applyFilters from '../../utils/applyFilters';
+import GnomeCard from '../gnomeCard';
+import Paginator from '../paginator';
 
 import './styles.scss';
-
-const pageSize = 20;
 
 function GnomeList() {
   const [gnomes, setGnomes] = useState({});
   const [gnomePage, setGnomePage] = useState([]);
   const dispatch = useDispatch();
   const selectedCity = useSelector(state => state.selectedCity);
+  const pageSize = useSelector(state => state.pageSize);
   const filters = useSelector(state => state.filters);
   const currentPage = useSelector(state => state.currentPage);
 
@@ -36,16 +37,17 @@ function GnomeList() {
       dispatch(actionCreators.setExistNextPage(!!wantedGnomesInCity[max]));
     }
     setGnomePage(newPage);
-  }, [currentPage, dispatch, filters, gnomes, selectedCity]);
+  }, [currentPage, dispatch, filters, gnomes, pageSize, selectedCity]);
 
   return (
-    <div>
-      <span>Listado</span>
-      <div className="column character-list">
+    <div className="width-100 m-bottom-10">
+      <div className="row center space-between m-bottom-4 ">
+        <span className="list-title">Characters</span>
+        <Paginator />
+      </div>
+      <div className="row wrap">
         {gnomePage.map(elem => (
-          <span className="m-bottom-2" key={elem.id}>
-            {elem.name}
-          </span>
+          <GnomeCard key={elem.id} gnome={elem} />
         ))}
       </div>
     </div>

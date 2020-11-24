@@ -13,16 +13,24 @@ export const INITIAL_STATE = {
     weight: null
   },
   currentPage: 1,
-  existNextPage: true
+  existNextPage: true,
+  pageSize: 20
 };
 
-const ActionTypes = createObject(['SET_CITIES', 'SET_FILTERS', 'SET_CURRENT_PAGE', 'EXIST_NEXT_PAGE']);
+const ActionTypes = createObject([
+  'SET_CITIES',
+  'SET_FILTERS',
+  'SET_CURRENT_PAGE',
+  'EXIST_NEXT_PAGE',
+  'SET_PAGE_SIZE'
+]);
 
 export const actionCreators = {
   setCities: cities => ({ type: ActionTypes.SET_CITIES, payload: cities }),
   setFilters: filters => ({ type: ActionTypes.SET_FILTERS, payload: filters }),
   setCurrentPage: currentPage => ({ type: ActionTypes.SET_CURRENT_PAGE, payload: currentPage }),
-  setExistNextPage: exist => ({ type: ActionTypes.EXIST_NEXT_PAGE, payload: exist })
+  setExistNextPage: exist => ({ type: ActionTypes.EXIST_NEXT_PAGE, payload: exist }),
+  setPageSize: newSize => ({ type: ActionTypes.SET_PAGE_SIZE, payload: newSize })
 };
 
 export const reducer = (state, action) => {
@@ -38,6 +46,9 @@ export const reducer = (state, action) => {
     }
     case ActionTypes.EXIST_NEXT_PAGE: {
       return { ...state, existNextPage: action.payload };
+    }
+    case ActionTypes.SET_PAGE_SIZE: {
+      return { ...state, pageSize: action.payload, currentPage: 1 };
     }
     default: {
       return state;

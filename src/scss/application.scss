@@ -6,16 +6,33 @@
 
 @import 'components';
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
 // TODO: Edit this global styles
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, 'Droid Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: $gallery;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+label,
+input,
+a,
+button,
+select,
+textarea {
+  font-family: 'Nunito Sans', sans-serif;
+  color: $cod-gray;
+}
+
+.main-page {
+  padding: 20px 200px;
 }

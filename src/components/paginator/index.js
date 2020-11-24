@@ -12,25 +12,35 @@ function Paginator() {
 
   const changePage = newPage => dispatch(actionCreators.setCurrentPage(newPage));
 
+  const changePageSize = e => dispatch(actionCreators.setPageSize(Number(e.target.value)));
+
   return (
-    <div>
+    <div className="row middle space-between">
       <button
-        className="paginator-button"
+        className="m-right-2 paginator-button"
         disabled={currentPage === 1}
         type="button"
         onClick={() => changePage(currentPage - 1)}
       >
         Prev.
       </button>
-      <span className="page-input">{currentPage}</span>
+      <span className="m-right-2 page-input">{currentPage}</span>
       <button
-        className="paginator-button"
+        className="m-right-2 paginator-button"
         disabled={!existNextPage}
         type="button"
         onClick={() => changePage(currentPage + 1)}
       >
         Next
       </button>
+      <select className="page-size" onChange={changePageSize}>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option selected="selected" value="20">
+          20
+        </option>
+        <option value="50">50</option>
+      </select>
     </div>
   );
 }
