@@ -6,7 +6,7 @@ const { success, validateEnvs } = require('./utils');
 
 const env = argv._[0];
 
-validateEnvs(env);
+// validateEnvs(env);
 
 success(`Building '${env}'`);
 
