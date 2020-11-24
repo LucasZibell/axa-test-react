@@ -14,6 +14,8 @@ function Filters() {
   const cities = useSelector(state => state.cities);
   const selectedCity = useSelector(state => state.selectedCity);
 
+  const changeSelectedCity = newCity => dispatch(actionCreators.setNewCity(newCity));
+
   useEffect(() => {
     const delayDebounce = setTimeout(() => dispatch(actionCreators.setFilters(filters)), searchDelay);
 
@@ -25,12 +27,14 @@ function Filters() {
       <div className="row m-bottom-2">
         <span className={`m-right-4 ${styles.city}`}>Select a city:</span>
         {cities.map(city => (
-          <span
+          <button
+            type="button"
             key={city}
+            onClick={() => changeSelectedCity(city)}
             className={`m-right-4 ${styles.city} ${city === selectedCity ? styles.activeCity : ''}`}
           >
             {city}
-          </span>
+          </button>
         ))}
       </div>
       <div className="row space-between">

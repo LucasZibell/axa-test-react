@@ -1,5 +1,5 @@
 {
-  "name": "react-test",
+  "name": "axa-test-react",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -46,7 +46,7 @@
     "@rescripts/cli": "0.0.13",
     "@types/enzyme": "^3.10.7",
     "@types/react-spinkit": "^3.0.6",
-    "@types/react-test-renderer": "^16.9.3",
+    "@types/axa-test-react-renderer": "^16.9.3",
     "aws-deploy-script-fe": "^1.0.8",
     "chalk": "^3.0.0",
     "env-cmd": "^10.1.0",
@@ -70,13 +70,13 @@
     "prettier-stylelint": "^0.4.2",
     "prop-types": "^15.7.2",
     "react-hot-loader": "^4.13.0",
-    "react-test-renderer": "^16.13.1",
+    "axa-test-react-renderer": "^16.13.1",
     "stylelint": "^9.10.1",
     "stylelint-config-wolox": "^1.0.7",
     "stylelint-no-indistinguishable-colors": "^1.2.1",
     "stylelint-scss": "^3.5.4"
   },
-  "title": "react-test",
+  "title": "axa-test-react",
   "jest": {
     "moduleNameMapper": {
       "~screens(.*)": "<rootDir>/src/app/screens/$1",

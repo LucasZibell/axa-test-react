@@ -22,7 +22,8 @@ const ActionTypes = createObject([
   'SET_FILTERS',
   'SET_CURRENT_PAGE',
   'EXIST_NEXT_PAGE',
-  'SET_PAGE_SIZE'
+  'SET_PAGE_SIZE',
+  'SET_NEW_CITY'
 ]);
 
 export const actionCreators = {
@@ -30,7 +31,8 @@ export const actionCreators = {
   setFilters: filters => ({ type: ActionTypes.SET_FILTERS, payload: filters }),
   setCurrentPage: currentPage => ({ type: ActionTypes.SET_CURRENT_PAGE, payload: currentPage }),
   setExistNextPage: exist => ({ type: ActionTypes.EXIST_NEXT_PAGE, payload: exist }),
-  setPageSize: newSize => ({ type: ActionTypes.SET_PAGE_SIZE, payload: newSize })
+  setPageSize: newSize => ({ type: ActionTypes.SET_PAGE_SIZE, payload: newSize }),
+  setNewCity: newCity => ({ type: ActionTypes.SET_NEW_CITY, payload: newCity })
 };
 
 export const reducer = (state, action) => {
@@ -49,6 +51,9 @@ export const reducer = (state, action) => {
     }
     case ActionTypes.SET_PAGE_SIZE: {
       return { ...state, pageSize: action.payload, currentPage: 1 };
+    }
+    case ActionTypes.SET_NEW_CITY: {
+      return { ...state, selectedCity: action.payload, currentPage: 1 };
     }
     default: {
       return state;
