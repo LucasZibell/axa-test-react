@@ -71,6 +71,10 @@
     align-items: flex-end;
   }
 
+  &.baseline {
+    align-items: baseline;
+  }
+
   &.start {
     justify-content: flex-start;
   }
@@ -140,4 +144,8 @@
 
 .width-100 {
   width: 100%;
+}
+
+.bold {
+  font-weight: bold; // stylelint-disable-line font-weight-notation
 }

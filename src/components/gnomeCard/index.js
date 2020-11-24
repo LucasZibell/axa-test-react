@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-dom-props */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
@@ -5,18 +6,7 @@ import Modal from 'react-modal';
 import joinArray from '../../utils/joinArray';
 
 import styles from './styles.module.scss';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    width: '600px',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
-  }
-};
+import { modalStyle } from './constants';
 
 function GnomeCard({ gnome }) {
   const { name, thumbnail, age, friends, hair_color: hairColor, height, professions, weight } = gnome;
@@ -36,14 +26,23 @@ function GnomeCard({ gnome }) {
     <>
       <button type="button" onClick={() => setOpenDetails(true)} className={`column ${styles.gnomeCard}`}>
         <img className={`self-center m-bottom-2 ${styles.gnomeImage}`} src={thumbnail} />
-        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Name: {name}</span>
-        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Age: {age}</span>
-        <span className={styles.gnomeInformation}>Hair: {hairColor}</span>
+        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
+          Name: <span className={`${styles.gnomeInformation} bold`}>{name}</span>
+        </span>
+        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
+          Age: <span className={`${styles.gnomeInformation} bold`}>{age}</span>
+        </span>
+        <span className={styles.gnomeInformation}>
+          Hair:{' '}
+          <span className={`${styles.gnomeInformation} bold`} style={{ color: hairColor }}>
+            {hairColor}
+          </span>
+        </span>
       </button>
       {isOpen && (
         <Modal
           closeTimeoutMS={500}
-          style={customStyles}
+          style={modalStyle}
           isOpen={isOpen}
           onRequestClose={() => setOpenDetails(false)}
         >
@@ -51,14 +50,15 @@ function GnomeCard({ gnome }) {
             <span className={`m-bottom-3 self-center ${styles.gnomeTitle}`}>{name}</span>
             <img className={`self-center m-bottom-4 ${styles.gnomeModalImage}`} src={thumbnail} />
             <div className={styles.gnomeInformationBox}>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Age: {age}</span>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Hair: {hairColor}</span>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Height: {height}</span>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
-                Friends: {friendsText || 'None'}
-              </span>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>Weight: {weight}</span>
-              <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
+              <span className={`${styles.gnomeModalInformation}`}>Age: {age}</span>
+              <div className="row baseline">
+                <span className={`m-right-1 ${styles.gnomeModalInformation}`}>Hair: {hairColor}</span>
+                <div className={styles.hairColor} style={{ 'background-color': hairColor }} />
+              </div>
+              <span className={`${styles.gnomeModalInformation}`}>Height: {height}</span>
+              <span className={`${styles.gnomeModalInformation}`}>Friends: {friendsText || 'None'}</span>
+              <span className={`${styles.gnomeModalInformation}`}>Weight: {weight}</span>
+              <span className={`${styles.gnomeModalInformation}`}>
                 Professions: {professionText || 'None'}
               </span>
             </div>
