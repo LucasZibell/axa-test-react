@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector, useDispatch } from '../../context';
 import { actionCreators } from '../../context/reducer';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 function Paginator() {
   const currentPage = useSelector(state => state.currentPage);
@@ -17,23 +17,23 @@ function Paginator() {
   return (
     <div className="row middle space-between">
       <button
-        className="m-right-2 paginator-button"
+        className={`m-right-2 ${styles.paginatorButton}`}
         disabled={currentPage === 1}
         type="button"
         onClick={() => changePage(currentPage - 1)}
       >
         Prev.
       </button>
-      <span className="m-right-2 page-input">{currentPage}</span>
+      <span className={`m-right-2 ${styles.pageInput}`}>{currentPage}</span>
       <button
-        className="m-right-2 paginator-button"
+        className={`m-right-2 ${styles.paginatorButton}`}
         disabled={!existNextPage}
         type="button"
         onClick={() => changePage(currentPage + 1)}
       >
         Next
       </button>
-      <select className="page-size" onChange={changePageSize}>
+      <select className={styles.pageSize} onChange={changePageSize}>
         <option value="5">5</option>
         <option value="10">10</option>
         <option selected="selected" value="20">

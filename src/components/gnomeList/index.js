@@ -7,7 +7,7 @@ import applyFilters from '../../utils/applyFilters';
 import GnomeCard from '../gnomeCard';
 import Paginator from '../paginator';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 function GnomeList() {
   const [gnomes, setGnomes] = useState({});
@@ -42,7 +42,7 @@ function GnomeList() {
   return (
     <div className="width-100 m-bottom-10">
       <div className="row center space-between m-bottom-4 ">
-        <span className="list-title">Characters</span>
+        <span className={styles.listTitle}>Characters</span>
         <Paginator />
       </div>
       <div className="row wrap">

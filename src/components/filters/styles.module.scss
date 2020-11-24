@@ -1,4 +1,4 @@
-@import '../../scss/variables/colors.scss';
+@import '../../scss/variables/colors';
 
 .name-input {
   border: solid 1px $alto;
@@ -19,5 +19,5 @@
 
 .active-city {
   color: $denim;
-  font-weight: bold;
+  font-weight: 700;
 }
