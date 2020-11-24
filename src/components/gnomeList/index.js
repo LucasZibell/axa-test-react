@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { actionCreators } from '../../context/reducer';
 import { useSelector, useDispatch } from '../../context';
 import { getGnomes } from '../../services/gnomes';
+import applyFilters from '../../utils/applyFilters';
 
 import './styles.scss';
 
@@ -13,7 +14,7 @@ function GnomeList() {
   const [gnomePage, setGnomePage] = useState([]);
   const dispatch = useDispatch();
   const selectedCity = useSelector(state => state.selectedCity);
-  const filteredName = useSelector(state => state.filterName);
+  const filters = useSelector(state => state.filters);
   const currentPage = useSelector(state => state.currentPage);
 
   useEffect(() => {
@@ -30,12 +31,12 @@ function GnomeList() {
     const max = pageSize * currentPage;
     let newPage = [];
     if (gnomesInCity.length) {
-      const wantedGnomesInCity = gnomesInCity.filter(({ name }) => name.includes(filteredName));
+      const wantedGnomesInCity = applyFilters(gnomesInCity, filters);
       newPage = wantedGnomesInCity.slice(min, max);
       dispatch(actionCreators.setExistNextPage(!!wantedGnomesInCity[max]));
     }
     setGnomePage(newPage);
-  }, [currentPage, dispatch, filteredName, gnomes, selectedCity]);
+  }, [currentPage, dispatch, filters, gnomes, selectedCity]);
 
   return (
     <div>
