@@ -11,5 +11,5 @@ export default (list, { name, age, wantedFriend, hairColor, height, wantedProfes
     ...(weight ? [elem => elem.weight === Math.trunc(weight) || elem.weight === weight] : [])
   ];
 
-  return filtersToApply.length ? list.filter(elem => filtersToApply.some(filterFn => filterFn(elem))) : list;
+  return list.filter(elem => filtersToApply.every(filterFn => filterFn(elem)));
 };
