@@ -54,3 +54,15 @@ textarea {
 .main-page {
   padding: 20px 200px;
 }
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .main-page {
+    padding: 20px 50px;
+  }
+}
+
+@media screen and (max-width: $breakpoint-phone) {
+  .main-page {
+    padding: 20px;
+  }
+}

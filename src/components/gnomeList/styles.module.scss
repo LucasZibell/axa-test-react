@@ -1,3 +1,5 @@
+@import '../../scss/margins';
+
 .list-title {
   font-size: 24px;
 }
@@ -5,10 +7,16 @@
 .gnome-list {
   column-gap: 4px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   row-gap: 12px;
 }
 
 .loader-screen {
   padding-top: 100px;
+}
+
+@media screen and (max-width: $breakpoint-phone) {
+  .list-title {
+    margin-bottom: 8px;
+  }
 }

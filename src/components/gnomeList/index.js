@@ -45,7 +45,7 @@ function GnomeList() {
 
   return (
     <div className="width-100 m-bottom-10">
-      <div className="row center space-between m-bottom-4 ">
+      <div className="row wrap center space-between m-bottom-4">
         <span className={styles.listTitle}>Characters</span>
         <Paginator disabled={loading} />
       </div>

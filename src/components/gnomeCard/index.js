@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
+import { mobileBreakPoint } from '../../constants/responsive';
 import joinArray from '../../utils/joinArray';
+import useScreenSize from '../../hooks/useScreenSize';
 
 import styles from './styles.module.scss';
-import { modalStyle } from './constants';
 
 function GnomeCard({ gnome }) {
   const { name, thumbnail, age, friends, hair_color: hairColor, height, professions, weight } = gnome;
+  const { screenWidth } = useScreenSize();
   const [isOpen, setOpenDetails] = useState(false);
   const [friendsText, setFriendsText] = useState('');
   const [professionText, setProfessionText] = useState('');
@@ -25,7 +27,9 @@ function GnomeCard({ gnome }) {
   return (
     <>
       <button type="button" onClick={() => setOpenDetails(true)} className={`column ${styles.gnomeCard}`}>
-        <img className={`self-center m-bottom-2 ${styles.gnomeImage}`} src={thumbnail} />
+        {screenWidth > mobileBreakPoint && (
+          <img className={`self-center m-bottom-2 ${styles.gnomeImage}`} src={thumbnail} />
+        )}
         <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
           Name: <span className={`${styles.gnomeInformation} bold`}>{name}</span>
         </span>
@@ -42,26 +46,22 @@ function GnomeCard({ gnome }) {
       {isOpen && (
         <Modal
           closeTimeoutMS={500}
-          style={modalStyle}
+          className={`column ${styles.gnomeModal}`}
           isOpen={isOpen}
           onRequestClose={() => setOpenDetails(false)}
         >
-          <div className={`column ${styles.modalContainer}`}>
-            <span className={`m-bottom-3 self-center ${styles.gnomeTitle}`}>{name}</span>
-            <img className={`self-center m-bottom-4 ${styles.gnomeModalImage}`} src={thumbnail} />
-            <div className={styles.gnomeInformationBox}>
-              <span className={`${styles.gnomeModalInformation}`}>Age: {age}</span>
-              <div className="row baseline">
-                <span className={`m-right-1 ${styles.gnomeModalInformation}`}>Hair: {hairColor}</span>
-                <div className={styles.hairColor} style={{ 'background-color': hairColor }} />
-              </div>
-              <span className={`${styles.gnomeModalInformation}`}>Height: {height}</span>
-              <span className={`${styles.gnomeModalInformation}`}>Friends: {friendsText || 'None'}</span>
-              <span className={`${styles.gnomeModalInformation}`}>Weight: {weight}</span>
-              <span className={`${styles.gnomeModalInformation}`}>
-                Professions: {professionText || 'None'}
-              </span>
+          <span className={`m-bottom-3 self-center ${styles.gnomeTitle}`}>{name}</span>
+          <img className={`self-center m-bottom-4 ${styles.gnomeModalImage}`} src={thumbnail} />
+          <div className={styles.gnomeInformationBox}>
+            <span className={`${styles.gnomeModalInformation}`}>Age: {age}</span>
+            <div className="row baseline">
+              <span className={`m-right-1 ${styles.gnomeModalInformation}`}>Hair: {hairColor}</span>
+              <div className={styles.hairColor} style={{ 'background-color': hairColor }} />
             </div>
+            <span className={`${styles.gnomeModalInformation}`}>Height: {height}</span>
+            <span className={`${styles.gnomeModalInformation}`}>Friends: {friendsText || 'None'}</span>
+            <span className={`${styles.gnomeModalInformation}`}>Weight: {weight}</span>
+            <span className={`${styles.gnomeModalInformation}`}>Professions: {professionText || 'None'}</span>
           </div>
         </Modal>
       )}

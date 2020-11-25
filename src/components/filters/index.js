@@ -37,46 +37,46 @@ function Filters() {
           </button>
         ))}
       </div>
-      <div className="row space-between">
+      <div className={styles.filterContainer}>
         <input
           placeholder="Name"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, name: e.target.value })}
         />
         <input
           placeholder="Age"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, age: Number(e.target.value) })}
         />
         <input
           placeholder="Hair"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, hairColor: e.target.value })}
         />
         <input
           placeholder="Friend"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedFriend: e.target.value })}
         />
         <input
           placeholder="Height"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, height: Number(e.target.value) })}
         />
         <input
           placeholder="Profession"
-          className={`m-right-2 ${styles.nameInput}`}
+          className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedProfession: e.target.value })}
         />
         <input
           placeholder="Weight"
-          className={styles.nameInput}
+          className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, weight: Number(e.target.value) })}
         />

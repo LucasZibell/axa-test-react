@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useSelector, useDispatch } from '../../context';
 import { actionCreators } from '../../context/reducer';
+import useScreenSize from '../../hooks/useScreenSize';
+import { mobileBreakPoint } from '../../constants/responsive';
 
 import styles from './styles.module.scss';
-
-// eslint-disable-next-line no-magic-numbers
-const paginationOptions = [5, 10, 20, 50];
+import { paginationOptions, mobilePageSize, desktopPageSize } from './constants';
 
 function Paginator({ disabled }) {
+  const { screenWidth } = useScreenSize();
   const currentPage = useSelector(state => state.currentPage);
   const existNextPage = useSelector(state => state.existNextPage);
+  const pageSize = useSelector(state => state.pageSize);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(actionCreators.setPageSize(screenWidth <= mobileBreakPoint ? mobilePageSize : desktopPageSize));
+  }, [dispatch, screenWidth]);
 
   const changePage = newPage => dispatch(actionCreators.setCurrentPage(newPage));
 
@@ -37,7 +43,7 @@ function Paginator({ disabled }) {
       >
         Next
       </button>
-      <select defaultValue="20" className={styles.pageSize} onChange={changePageSize} disabled={disabled}>
+      <select value={pageSize} className={styles.pageSize} onChange={changePageSize} disabled={disabled}>
         {paginationOptions.map(elem => (
           <option key={elem} value={elem}>
             {elem}

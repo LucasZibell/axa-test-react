@@ -1,5 +1,7 @@
 @import '../../scss/variables/colors';
 
+@import '../../scss/margins';
+
 .gnome-card {
   border: solid 1px $alto;
   border-radius: 4px;
@@ -17,8 +19,18 @@
   }
 }
 
-.modal-container {
-  padding: 0 40px;
+.gnome-modal {
+  background-color: $white;
+  border: 1px solid $alto;
+  border-radius: 4px;
+  height: auto;
+  margin: auto;
+  outline: 0;
+  padding: 30px 40px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 600px;
 }
 
 .hair-color {
@@ -111,5 +123,44 @@
 
   100% {
     transform: translate(-1px, 0) rotate(1deg);
+  }
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .gnome-modal {
+    padding: 30px 40px;
+    width: 400px;
+  }
+
+  .gnome-modal-image {
+    height: 100px;
+  }
+
+  .gnome-modal-information {
+    text-align: start;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .gnome-title {
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
+
+@media screen and (max-width: $breakpoint-phone) {
+  .gnome-card {
+    height: 100px;
+    padding: 10px;
+  }
+
+  .gnome-modal {
+    padding: 20px 30px;
+    width: 250px;
+  }
+
+  .gnome-title {
+    font-size: 16px;
+    line-height: 18px;
   }
 }
