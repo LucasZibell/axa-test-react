@@ -39,42 +39,49 @@ function Filters() {
       </div>
       <div className={styles.filterContainer}>
         <input
+          aria-label="Filter by name"
           placeholder="Name"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, name: e.target.value })}
         />
         <input
+          aria-label="Filter by age"
           placeholder="Age"
           className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, age: Number(e.target.value) })}
         />
         <input
+          aria-label="Filter by hair color"
           placeholder="Hair"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, hairColor: e.target.value })}
         />
         <input
+          aria-label="Filter by friends"
           placeholder="Friend"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedFriend: e.target.value })}
         />
         <input
+          aria-label="Filter by height"
           placeholder="Height"
           className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, height: Number(e.target.value) })}
         />
         <input
+          aria-label="Filter by profession"
           placeholder="Profession"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedProfession: e.target.value })}
         />
         <input
+          aria-label="Filter by weight"
           placeholder="Weight"
           className={styles.filterInput}
           type="number"
