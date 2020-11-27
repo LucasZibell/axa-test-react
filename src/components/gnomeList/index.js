@@ -7,6 +7,7 @@ import { getGnomes } from '../../services/gnomes';
 import applyFilters from '../../utils/applyFilters';
 import GnomeCard from '../gnomeCard';
 import Paginator from '../paginator';
+import EmptyList from '../emptyList';
 
 import styles from './styles.module.scss';
 
@@ -55,9 +56,7 @@ function GnomeList() {
         </div>
       ) : (
         <div className={styles.gnomeList}>
-          {gnomePage.map(elem => (
-            <GnomeCard key={elem.id} gnome={elem} />
-          ))}
+          {gnomePage.length ? gnomePage.map(elem => <GnomeCard key={elem.id} gnome={elem} />) : <EmptyList />}
         </div>
       )}
     </div>
