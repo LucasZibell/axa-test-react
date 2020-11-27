@@ -1,5 +1,5 @@
 /* eslint-disable react/forbid-dom-props */
-import React, { useEffect, useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 
@@ -13,30 +13,28 @@ function GnomeCard({ gnome }) {
   const { name, thumbnail, age, friends, hair_color: hairColor, height, professions, weight } = gnome;
   const { screenWidth } = useScreenSize();
   const [isOpen, setOpenDetails] = useState(false);
-  const [friendsText, setFriendsText] = useState('');
-  const [professionText, setProfessionText] = useState('');
 
-  useEffect(() => {
-    setFriendsText(joinArray(friends));
-  }, [friends]);
+  const friendsText = useMemo(() => joinArray(friends), [friends]);
 
-  useEffect(() => {
-    setProfessionText(joinArray(professions));
-  }, [professions]);
+  const professionText = useMemo(() => joinArray(professions), [professions]);
 
   return (
     <>
       <button type="button" onClick={() => setOpenDetails(true)} className={`column ${styles.gnomeCard}`}>
         {screenWidth > mobileBreakPoint && (
-          <img className={`self-center m-bottom-2 ${styles.gnomeImage}`} src={thumbnail} />
+          <img
+            data-testid="gnomeImage"
+            className={`self-center m-bottom-2 ${styles.gnomeImage}`}
+            src={thumbnail}
+          />
         )}
-        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
+        <span data-testid="gnomeName" className={`m-bottom-2 ${styles.gnomeInformation}`}>
           Name: <span className={`${styles.gnomeInformation} bold`}>{name}</span>
         </span>
-        <span className={`m-bottom-2 ${styles.gnomeInformation}`}>
+        <span data-testid="gnomeAge" className={`m-bottom-2 ${styles.gnomeInformation}`}>
           Age: <span className={`${styles.gnomeInformation} bold`}>{age}</span>
         </span>
-        <span className={styles.gnomeInformation}>
+        <span data-testid="gnomeHair" className={styles.gnomeInformation}>
           Hair:{' '}
           <span className={`${styles.gnomeInformation} bold`} style={{ color: hairColor }}>
             {hairColor}
@@ -45,6 +43,7 @@ function GnomeCard({ gnome }) {
       </button>
       {isOpen && (
         <Modal
+          ariaHideApp={false}
           closeTimeoutMS={500}
           className={`column ${styles.gnomeModal}`}
           isOpen={isOpen}
@@ -56,7 +55,7 @@ function GnomeCard({ gnome }) {
             <span className={`${styles.gnomeModalInformation}`}>Age: {age}</span>
             <div className="row baseline">
               <span className={`m-right-1 ${styles.gnomeModalInformation}`}>Hair: {hairColor}</span>
-              <div className={styles.hairColor} style={{ 'background-color': hairColor }} />
+              <div className={styles.hairColor} style={{ backgroundColor: hairColor }} />
             </div>
             <span className={`${styles.gnomeModalInformation}`}>Height: {height}</span>
             <span className={`${styles.gnomeModalInformation}`}>Friends: {friendsText || 'None'}</span>

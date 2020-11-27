@@ -40,6 +40,7 @@ function Filters() {
       <div className={styles.filterContainer}>
         <input
           aria-label="Filter by name"
+          data-testid="nameFilter"
           placeholder="Name"
           className={styles.filterInput}
           type="text"
@@ -47,6 +48,7 @@ function Filters() {
         />
         <input
           aria-label="Filter by age"
+          data-testid="ageFilter"
           placeholder="Age"
           className={styles.filterInput}
           type="number"
@@ -54,6 +56,7 @@ function Filters() {
         />
         <input
           aria-label="Filter by hair color"
+          data-testid="hairFilter"
           placeholder="Hair"
           className={styles.filterInput}
           type="text"
@@ -62,27 +65,31 @@ function Filters() {
         <input
           aria-label="Filter by friends"
           placeholder="Friend"
+          data-testid="friendFilter"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedFriend: e.target.value })}
         />
         <input
-          aria-label="Filter by height"
-          placeholder="Height"
-          className={styles.filterInput}
-          type="number"
-          onChange={e => setFilter({ ...filters, height: Number(e.target.value) })}
-        />
-        <input
           aria-label="Filter by profession"
           placeholder="Profession"
+          data-testid="professionFilter"
           className={styles.filterInput}
           type="text"
           onChange={e => setFilter({ ...filters, wantedProfession: e.target.value })}
         />
         <input
+          aria-label="Filter by height"
+          placeholder="Height"
+          data-testid="heightFilter"
+          className={styles.filterInput}
+          type="number"
+          onChange={e => setFilter({ ...filters, height: Number(e.target.value) })}
+        />
+        <input
           aria-label="Filter by weight"
           placeholder="Weight"
+          data-testid="weightFilter"
           className={styles.filterInput}
           type="number"
           onChange={e => setFilter({ ...filters, weight: Number(e.target.value) })}

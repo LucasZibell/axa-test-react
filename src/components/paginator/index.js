@@ -27,6 +27,7 @@ function Paginator({ disabled }) {
   return (
     <div className="row middle space-between">
       <button
+        data-testid="decrease"
         className={`m-right-2 ${styles.paginatorButton}`}
         disabled={currentPage === 1 || disabled}
         type="button"
@@ -34,8 +35,11 @@ function Paginator({ disabled }) {
       >
         Prev.
       </button>
-      <span className={`m-right-2 ${styles.pageInput}`}>{currentPage}</span>
+      <span data-testid="currentPage" className={`m-right-2 ${styles.pageInput}`}>
+        {currentPage}
+      </span>
       <button
+        data-testid="increment"
         className={`m-right-2 ${styles.paginatorButton}`}
         disabled={!existNextPage || disabled}
         type="button"
@@ -43,7 +47,13 @@ function Paginator({ disabled }) {
       >
         Next
       </button>
-      <select value={pageSize} className={styles.pageSize} onChange={changePageSize} disabled={disabled}>
+      <select
+        data-testid="pageSize"
+        value={pageSize}
+        className={styles.pageSize}
+        onChange={changePageSize}
+        disabled={disabled}
+      >
         {paginationOptions.map(elem => (
           <option key={elem} value={elem}>
             {elem}

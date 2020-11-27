@@ -55,7 +55,7 @@ function GnomeList() {
           <BounceLoader color="#0A6CB4" />
         </div>
       ) : (
-        <div className={styles.gnomeList}>
+        <div data-testid="listContainer" className={styles.gnomeList}>
           {gnomePage.length ? gnomePage.map(elem => <GnomeCard key={elem.id} gnome={elem} />) : <EmptyList />}
         </div>
       )}
